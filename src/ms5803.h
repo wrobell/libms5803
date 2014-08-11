@@ -1,5 +1,5 @@
 /*
- * ms5803 - MS5803 pressure sensor library
+ * libms5803 - MS5803 pressure sensor library
  *
  * Copyright (C) 2014 by Artur Wroblewski <wrobell@pld-linux.org>
  *
