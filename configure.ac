@@ -7,4 +7,6 @@ LT_INIT
 AC_PROG_CC
 AM_PROG_CC_C_O
 
-AC_OUTPUT(Makefile src/Makefile)
+AM_PATH_CHECK
+
+AC_OUTPUT([Makefile src/Makefile tests/Makefile])
