@@ -25,7 +25,7 @@ class Sensor(object):
     """
     def __init__(self):
         """
-        Create pressure sensor communication interface.
+        Initialize pressure sensor and read its calibration coefficients.
         """
         self._lib = ct.CDLL('libms5803.so.0')
         self._lib.ms5803_init()

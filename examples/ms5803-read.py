@@ -25,7 +25,7 @@ import ms5803
 sensor = ms5803.Sensor()
 while True:
     pressure, temp = sensor.read()
-    print('{}: {} millibar {}C'.format(datetime.now(), pressure / 10, temp / 10))
+    print('{}: {}bar {}C'.format(datetime.now(), pressure / 10000, temp / 100))
 
     time.sleep(0.5)
 
