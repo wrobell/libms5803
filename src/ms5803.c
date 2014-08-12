@@ -45,8 +45,14 @@ static int i2c_fd;
 /* MS5803 calibration data */
 static uint16_t calib_coeff[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
-/* command is 0x48 or 0x58, this is read pressure or temperature with
- * highest accuracy */
+/*!
+ * Perform ADC read from the sensor.
+ *
+ * Command is 0x48 or 0x58 - read pressure or temperature with highest
+ * accuracy.
+ *
+ * \param command ADC command.
+ */
 static uint32_t read_value(uint8_t command) {
     int r;
     uint8_t data[3];
@@ -71,10 +77,9 @@ static uint32_t read_value(uint8_t command) {
     return (data[0] << 16) | (data[1] << 8) | data[2];
 }
 
-/**
- * Read pressure from MS5803 sensor.
- *
- * The unit of returned value is Pascal.
+/*!
+ * Calculate pressure and temperature using D1, D2 values read from sensor
+ * and the calibration coefficients.
  */
 static void calculate(uint32_t d1, uint32_t d2, int32_t *pressure, int32_t *temperature) {
     int32_t d_t, temp, p;
@@ -127,9 +132,10 @@ static void calculate(uint32_t d1, uint32_t d2, int32_t *pressure, int32_t *temp
     *temperature = temp;
 }
 
-/**
- * Initialize and calibrate MS5803 sensor.
+/*
+ * Public API implementation.
  */
+
 int ms5803_init() {
     int r, i;
 
@@ -179,7 +185,7 @@ int ms5803_read(int32_t *pressure, int32_t *temperature) {
     return 0;
 }
 
-void ms5803_close() {
+int ms5803_close() {
     close(i2c_fd);
 }
 

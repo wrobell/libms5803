@@ -20,24 +20,27 @@
 #if !defined (_MS5803_H_)
 #define _MS5803_H_
 
-/**
- * Initialize MS5803 sensor.
+/*!
+ * \brief Initialize MS5803 sensor.
  *
- * Initialize I2C bus and calibrate MS5803 sensor.
+ * I2C bus is initialized and sensor is calibration coefficients are read.
  */
-void ms5803_init();
+int ms5803_init();
 
-/**
- * Read pressure and temperature from MS5803 sensor.
+/*!
+ * \brief Read pressure and temperature from MS5803 sensor.
+ *
+ * \param pressure Pressure - 1/10000 of bar or 1/10 of millibar.
+ * \param temperature Temperature - 1/100 of Celsius.
  */
 int ms5803_read(int32_t *pressure, int32_t *temperature);
 
-/**
- * Close MS5803 sensor.
+/*!
+ * \brief Release MS5803 sensor resources.
  *
- * Close I2C bus access.
+ * Access to the I2C bus is closed.
  */
-void ms5803_close();
+int ms5803_close();
 
 #endif /* _MS5803_H_ */
 
