@@ -4,7 +4,7 @@
  * Copyright (C) 2014 by Artur Wroblewski <wrobell@pld-linux.org>
  *
  * Also contains code from
- * 
+ *
  *      http://www.john.geek.nz/2013/02/update-bosch-ms5803-source-raspberry-pi/
  *
  * This program is free software: you can redistribute it and/or modify
@@ -104,7 +104,7 @@ static void calculate(uint32_t d1, uint32_t d2, int32_t *pressure, int32_t *temp
     DEBUG_LOG("MS5803 DEBUG: off: %d\n", off);
     DEBUG_LOG("MS5803 DEBUG: sens: %d\n", sens);
     DEBUG_LOG("MS5803 DEBUG: p: %d\n", p);
- 
+
     if (temp >= 2000) {
         DEBUG_LOG("MS5803 DEBUG: temp >= 20\n");
         t_2 = (7 * ((int64_t) d_t * d_t)) >> 37;
@@ -123,7 +123,7 @@ static void calculate(uint32_t d1, uint32_t d2, int32_t *pressure, int32_t *temp
             sens_2 = sens_2 + 4 * (temp + 1500) * (temp + 1500);
         }
     }
- 
+
     temp = temp - t_2;
     off = off - off_2;
     sens = sens - sens_2;
@@ -141,7 +141,7 @@ int ms5803_init() {
 
     if ((i2c_fd = open(MS5803_DEV, O_RDWR)) < 0)
         return -1;
-    
+
     /* set the port options and set the address of the device */
     if (ioctl(i2c_fd, I2C_SLAVE, MS5803_I2C_ADDRESS) < 0)
         return -1;
