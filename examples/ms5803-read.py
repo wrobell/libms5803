@@ -17,12 +17,22 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import argparse
 import time
 from datetime import datetime
+from functools import partial
 
 import ms5803
 
-sensor = ms5803.Sensor()
+parser = argparse.ArgumentParser(description='MS5803 pressure sensor example')
+parser.add_argument('device', help='I2C device filename, i.e. /dev/i2c-0')
+parser.add_argument(
+    'address', type=partial(int, base=16),
+    help='I2C device address, i.e. 0x77 (hex value)'
+)
+args = parser.parse_args()
+
+sensor = ms5803.Sensor(args.device, args.address)
 while True:
     pressure, temp = sensor.read()
     print('{}: {}bar {}C'.format(datetime.now(), pressure / 10000, temp / 100))

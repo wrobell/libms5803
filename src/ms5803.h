@@ -24,8 +24,11 @@
  * \brief Initialize MS5803 sensor.
  *
  * I2C bus is initialized and sensor is calibration coefficients are read.
+ *
+ * \param f_dev I2C device filename, i.e. /dev/i2c-0.
+ * \param address I2C device address, i.e. 0x77.
  */
-int ms5803_init();
+int ms5803_init(const char *, unsigned char) {
 
 /*!
  * \brief Read pressure and temperature from MS5803 sensor.

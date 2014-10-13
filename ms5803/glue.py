@@ -23,12 +23,15 @@ class Sensor(object):
     """
     MS5803 sensor communication interface.
     """
-    def __init__(self):
+    def __init__(self, f_dev, address):
         """
         Initialize pressure sensor and read its calibration coefficients.
+
+        :param f_dev: I2C device filename, i.e. /dev/i2c-0.
+        :param address: I2C device address, i.e. 0x77.
         """
         self._lib = ct.CDLL('libms5803.so.0')
-        self._lib.ms5803_init()
+        self._lib.ms5803_init(f_dev.encode(), address)
         self._p_value = ct.c_int()
         self._t_value = ct.c_int()
 

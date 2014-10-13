@@ -35,10 +35,6 @@
 
 #define BSWAP16(v) (v << 8) & 0xFF00 | (v >> 8) & 0xFF
 
-// fixme: remove hardcodings
-#define MS5803_I2C_ADDRESS 0x77
-#define MS5803_DEV "/dev/i2c-1"
-
 /* i2c file descriptor */
 static int i2c_fd;
 
@@ -136,14 +132,14 @@ static void calculate(uint32_t d1, uint32_t d2, int32_t *pressure, int32_t *temp
  * Public API implementation.
  */
 
-int ms5803_init() {
+int ms5803_init(const char *f_dev, unsigned char address) {
     int r, i;
 
-    if ((i2c_fd = open(MS5803_DEV, O_RDWR)) < 0)
+    if ((i2c_fd = open(f_dev, O_RDWR)) < 0)
         return -1;
 
     /* set the port options and set the address of the device */
-    if (ioctl(i2c_fd, I2C_SLAVE, MS5803_I2C_ADDRESS) < 0)
+    if (ioctl(i2c_fd, I2C_SLAVE, address) < 0)
         return -1;
 
     /* reset the sensor */
