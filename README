@@ -9,13 +9,18 @@ The library was tested with MS5803-14BA pressure sensor
 
     http://www.meas-spec.com/downloads/MS5803-14BA.pdf
 
+and on the following boards
+
+- Raspberry Pi
+- Acme Systems Arietta G25
+
 The code of the library is licensed under GPLv3 license, see COPYING file
-for details. As stated in the license, there is no warranty, so any
-joy from destroying sensors or Raspberry Pi boards belongs to you only.
+for details. As stated in the license, there is no warranty, so any joy
+from destroying sensors or your boards belongs to you only.
 
 Connecting MS5803 Sensor
 ========================
-The MS5803 pressure sensor should be connected to Raspberry Pi via I2C
+The MS5803 pressure sensor should be connected to a board via I2C
 interface.
 
 Using Library
