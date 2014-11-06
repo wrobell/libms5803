@@ -28,7 +28,7 @@
  * \param f_dev I2C device filename, i.e. /dev/i2c-0.
  * \param address I2C device address, i.e. 0x77.
  */
-int ms5803_init(const char *, unsigned char) {
+int ms5803_init(const char *f_dev, unsigned char address);
 
 /*!
  * \brief Read pressure and temperature from MS5803 sensor.
