@@ -28,7 +28,7 @@ setup(
     author='Artur Wroblewski',
     author_email='wrobell@pld-linux.org',
     url='https://github.com/wrobell/libms5803',
-    setup_requires = ['setuptools_git >= 1.0'],
+    setup_requires=['setuptools_git >= 1.0'],
     classifiers=[
         'Topic :: Software Development :: Libraries',
         'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
