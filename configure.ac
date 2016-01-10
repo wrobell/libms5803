@@ -1,4 +1,4 @@
-AC_INIT(libms5803, 0.1.1, wrobell@pld-linux.org)
+AC_INIT(libms5803, 0.2.0, wrobell@pld-linux.org)
 
 AC_CONFIG_MACRO_DIR([m4])
 
