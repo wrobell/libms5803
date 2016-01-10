@@ -20,12 +20,10 @@
 import cffi
 
 ffi = cffi.FFI()
-ffi.cdef("""
+ffi.set_source('_ms5803', """
 int ms5803_init(const char *, unsigned char);
 int ms5803_read(int32_t *, int32_t *);
 int ms5803_close();
-""")
-
-ffi.set_source('_ms5803', '')
+""", libraries=['ms5803'], library_dirs=['src/.libs'])
 
 # vim: sw=4:et:ai
