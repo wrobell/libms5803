@@ -17,33 +17,15 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from _ms5803 import ffi
+import cffi
 
-class Sensor(object):
-    """
-    MS5803 sensor communication interface.
-    """
-    def __init__(self, f_dev, address):
-        """
-        Initialize pressure sensor and read its calibration coefficients.
+ffi = cffi.FFI()
+ffi.cdef("""
+int ms5803_init(const char *, unsigned char);
+int ms5803_read(int32_t *, int32_t *);
+int ms5803_close();
+""")
 
-        :param f_dev: I2C device filename, i.e. /dev/i2c-0.
-        :param address: I2C device address, i.e. 0x77.
-        """
-        self._lib = ffi.dlopen('libms5803.so.0')
-        self._lib.ms5803_init(f_dev, address)
-        self._p_value = ffi.new('int32_t *')
-        self._t_value = ffi.new('int32_t *')
-
-
-    def read(self):
-        """
-        Read pressure and temperature from sensor.
-        """
-        px = self._p_value
-        tx = self._t_value
-        self._lib.ms5803_read(px, tx)
-        return px[0], tx[0]
-
+ffi.set_source('_ms5803', '')
 
 # vim: sw=4:et:ai

@@ -20,9 +20,15 @@
 
 from setuptools import setup, find_packages
 
+import ms5803.glue_build
+
 setup(
     name='ms5803',
     packages=find_packages('.'),
+#    ext_modules=[ms5803.glue_build.ffi.distutils_extension()],
+    setup_requires=['cffi >= 1.4.2'],
+    cffi_modules=['ms5803/glue_build.py:ffi'],
+    install_requires=['cffi >= 1.4.2'],
     version='0.2.0',
     description='libms5803 - MS5803 pressure sensor library',
     author='Artur Wroblewski',
