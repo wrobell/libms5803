@@ -23,7 +23,7 @@ from setuptools import setup, find_packages
 setup(
     name='ms5803',
     packages=find_packages('.'),
-    version='0.1.0',
+    version='0.2.0',
     description='libms5803 - MS5803 pressure sensor library',
     author='Artur Wroblewski',
     author_email='wrobell@pld-linux.org',
