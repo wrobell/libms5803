@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from _ms5803 import ffi
+from _ms5803 import ffi, lib
 
 class Sensor(object):
     """
@@ -30,8 +30,7 @@ class Sensor(object):
         :param f_dev: I2C device filename, i.e. /dev/i2c-0.
         :param address: I2C device address, i.e. 0x77.
         """
-        self._lib = ffi.dlopen('libms5803.so.0')
-        self._lib.ms5803_init(f_dev, address)
+        lib.ms5803_init(f_dev.encode(), address)
         self._p_value = ffi.new('int32_t *')
         self._t_value = ffi.new('int32_t *')
 
@@ -42,7 +41,7 @@ class Sensor(object):
         """
         px = self._p_value
         tx = self._t_value
-        self._lib.ms5803_read(px, tx)
+        lib.ms5803_read(px, tx)
         return px[0], tx[0]
 
 
